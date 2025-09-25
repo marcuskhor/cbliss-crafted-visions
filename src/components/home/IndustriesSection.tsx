@@ -1,44 +1,73 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Cpu, Heart, Car, Zap, Server, Cog, Smartphone } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import electronicTechImage from '@/assets/electronic-technology.jpg';
+import medicalDevicesImage from '@/assets/medical-devices.jpg';
+import automotiveImage from '@/assets/automotive.jpg';
+import semiconductorImage from '@/assets/semiconductor.jpg';
+import dataCentreImage from '@/assets/data-centre.jpg';
+import industrialElectronicsImage from '@/assets/industrial-electronics.jpg';
+import consumerElectronicsImage from '@/assets/consumer-electronics.jpg';
 
 const IndustriesSection = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
   const industries = [
     {
       title: 'Electronic Technology',
       description: 'Advanced components for electronic systems and cutting-edge technology applications.',
-      icon: Cpu,
+      image: electronicTechImage,
     },
     {
       title: 'Medical Devices',
       description: 'Precision manufacturing for critical medical equipment and healthcare devices.',
-      icon: Heart,
+      image: medicalDevicesImage,
     },
     {
       title: 'Automotive',
       description: 'High-quality automotive components for modern vehicle manufacturing.',
-      icon: Car,
+      image: automotiveImage,
     },
     {
       title: 'Semiconductor',
       description: 'Ultra-precise components for semiconductor manufacturing and testing equipment.',
-      icon: Zap,
+      image: semiconductorImage,
     },
     {
       title: 'Data Centre',
       description: 'Robust infrastructure components for data center and server applications.',
-      icon: Server,
+      image: dataCentreImage,
     },
     {
       title: 'Industrial Electronics & Mechatronics',
       description: 'Specialized components for industrial automation and mechatronic systems.',
-      icon: Cog,
+      image: industrialElectronicsImage,
     },
     {
       title: 'Consumer Electronics',
       description: 'Precision parts for consumer electronic devices and smart technologies.',
-      icon: Smartphone,
+      image: consumerElectronicsImage,
     },
   ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        const cardWidth = 288 + 24; // card width + gap
+        const maxScroll = (industries.length - 1) * cardWidth;
+        const newIndex = currentIndex >= industries.length - 1 ? 0 : currentIndex + 1;
+        
+        setCurrentIndex(newIndex);
+        scrollRef.current.scrollTo({
+          left: newIndex === 0 ? 0 : newIndex * cardWidth,
+          behavior: 'smooth'
+        });
+      }
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, industries.length]);
 
   return (
     <section className="py-20 bg-background">
@@ -51,43 +80,52 @@ const IndustriesSection = () => {
           </p>
         </div>
 
-        {/* Horizontal scrolling container */}
-        <div className="overflow-x-auto pb-6">
-          <div className="flex space-x-6 w-max">
+        {/* Auto-scrolling container */}
+        <div className="overflow-hidden pb-6">
+          <div ref={scrollRef} className="flex space-x-6 w-max overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {industries.map((industry, index) => {
-              const IconComponent = industry.icon;
               return (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-72 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group p-6"
+                  className="flex-shrink-0 w-72 bg-card rounded-lg border border-border hover:border-primary/50 transition-all duration-300 group overflow-hidden"
                 >
-                  <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-lg mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="h-8 w-8 text-white" />
+                  <div className="aspect-video overflow-hidden">
+                    <img 
+                      src={industry.image} 
+                      alt={industry.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  
-                  <h3 className="text-xl font-semibold text-foreground mb-3">{industry.title}</h3>
-                  <p className="text-muted-foreground mb-6 text-sm leading-relaxed">
-                    {industry.description}
-                  </p>
-                  
-                  <Button 
-                    variant="ghost" 
-                    className="text-primary hover:text-primary-foreground hover:bg-primary p-0 h-auto font-medium"
-                  >
-                    Discover Now
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-foreground mb-3">{industry.title}</h3>
+                    <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
+                      {industry.description}
+                    </p>
+                    
+                    <Button 
+                      variant="ghost" 
+                      className="text-primary hover:text-primary-foreground hover:bg-primary p-0 h-auto font-medium"
+                    >
+                      Discover Now
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Progress indicator */}
         <div className="flex justify-center mt-8">
           <div className="flex space-x-2">
             {industries.map((_, index) => (
-              <div key={index} className="w-2 h-2 bg-border rounded-full"></div>
+              <div 
+                key={index} 
+                className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                  index === currentIndex ? 'bg-primary' : 'bg-border'
+                }`}
+              ></div>
             ))}
           </div>
         </div>

@@ -1,9 +1,12 @@
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
 import metalStampingImage from '@/assets/metal-stamping.jpg';
 import cncMachiningImage from '@/assets/cnc-machining.jpg';
 
 const ServicesSection = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const services = [
     {
       title: 'Sheet Metal Fabrication',
@@ -37,6 +40,24 @@ const ServicesSection = () => {
     },
   ];
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (scrollRef.current) {
+        const cardWidth = 320 + 24; // card width + gap
+        const maxScroll = (services.length - 1) * cardWidth;
+        const newIndex = currentIndex >= services.length - 1 ? 0 : currentIndex + 1;
+        
+        setCurrentIndex(newIndex);
+        scrollRef.current.scrollTo({
+          left: newIndex === 0 ? 0 : newIndex * cardWidth,
+          behavior: 'smooth'
+        });
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [currentIndex, services.length]);
+
   return (
     <section className="py-20 bg-muted">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,9 +69,9 @@ const ServicesSection = () => {
           </p>
         </div>
 
-        {/* Horizontal scrolling container */}
-        <div className="overflow-x-auto pb-6">
-          <div className="flex space-x-6 w-max">
+        {/* Auto-scrolling container */}
+        <div className="overflow-hidden pb-6">
+          <div ref={scrollRef} className="flex space-x-6 w-max overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {services.map((service, index) => (
               <div
                 key={index}
@@ -81,11 +102,16 @@ const ServicesSection = () => {
           </div>
         </div>
 
-        {/* Scroll indicator */}
+        {/* Progress indicator */}
         <div className="flex justify-center mt-8">
           <div className="flex space-x-2">
             {services.map((_, index) => (
-              <div key={index} className="w-2 h-2 bg-border rounded-full"></div>
+              <div 
+                key={index} 
+                className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                  index === currentIndex ? 'bg-primary' : 'bg-border'
+                }`}
+              ></div>
             ))}
           </div>
         </div>
