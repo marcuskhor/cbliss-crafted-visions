@@ -42,21 +42,23 @@ const ServicesSection = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const cardWidth = 320 + 24; // card width + gap
-        const maxScroll = (services.length - 1) * cardWidth;
-        const newIndex = currentIndex >= services.length - 1 ? 0 : currentIndex + 1;
+      setCurrentIndex(prevIndex => {
+        const newIndex = prevIndex >= services.length - 1 ? 0 : prevIndex + 1;
         
-        setCurrentIndex(newIndex);
-        scrollRef.current.scrollTo({
-          left: newIndex === 0 ? 0 : newIndex * cardWidth,
-          behavior: 'smooth'
-        });
-      }
+        if (scrollRef.current) {
+          const cardWidth = 320 + 24; // card width + gap
+          scrollRef.current.scrollTo({
+            left: newIndex === 0 ? 0 : newIndex * cardWidth,
+            behavior: 'smooth'
+          });
+        }
+        
+        return newIndex;
+      });
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, services.length]);
+  }, [services.length]);
 
   return (
     <section className="py-20 bg-muted">
@@ -71,7 +73,7 @@ const ServicesSection = () => {
 
         {/* Auto-scrolling container */}
         <div className="overflow-hidden pb-6">
-          <div ref={scrollRef} className="flex space-x-6 w-max overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div ref={scrollRef} className="flex space-x-6 w-max" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {services.map((service, index) => (
               <div
                 key={index}

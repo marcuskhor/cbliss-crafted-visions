@@ -53,21 +53,23 @@ const IndustriesSection = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const cardWidth = 288 + 24; // card width + gap
-        const maxScroll = (industries.length - 1) * cardWidth;
-        const newIndex = currentIndex >= industries.length - 1 ? 0 : currentIndex + 1;
+      setCurrentIndex(prevIndex => {
+        const newIndex = prevIndex >= industries.length - 1 ? 0 : prevIndex + 1;
         
-        setCurrentIndex(newIndex);
-        scrollRef.current.scrollTo({
-          left: newIndex === 0 ? 0 : newIndex * cardWidth,
-          behavior: 'smooth'
-        });
-      }
+        if (scrollRef.current) {
+          const cardWidth = 288 + 24; // card width + gap
+          scrollRef.current.scrollTo({
+            left: newIndex === 0 ? 0 : newIndex * cardWidth,
+            behavior: 'smooth'
+          });
+        }
+        
+        return newIndex;
+      });
     }, 3500);
 
     return () => clearInterval(interval);
-  }, [currentIndex, industries.length]);
+  }, [industries.length]);
 
   return (
     <section className="py-20 bg-background">
@@ -82,7 +84,7 @@ const IndustriesSection = () => {
 
         {/* Auto-scrolling container */}
         <div className="overflow-hidden pb-6">
-          <div ref={scrollRef} className="flex space-x-6 w-max overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div ref={scrollRef} className="flex space-x-6 w-max" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {industries.map((industry, index) => {
               return (
                 <div
