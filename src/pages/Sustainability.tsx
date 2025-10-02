@@ -1,14 +1,16 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Leaf, Users, Shield, Sun, Recycle, Award, ArrowRight } from 'lucide-react';
-import sustainabilityHero from '@/assets/sustainability-hero.jpg';
+import worldOnFire from '@/assets/world-on-fire.jpg';
 import solarPanels from '@/assets/solar-panels.jpg';
 import circularEconomy from '@/assets/circular-economy.jpg';
 import diverseTeam from '@/assets/diverse-team.jpg';
 import environmentalStewardship from '@/assets/environmental-stewardship.jpg';
 import governance from '@/assets/governance.jpg';
+import { useCountUp } from '@/hooks/useCountUp';
 
 const Sustainability = () => {
+  const foodWasteCount = useCountUp(4320361019, 3000);
   const initiatives = [
     {
       title: 'Designing for Circularity',
@@ -66,36 +68,24 @@ const Sustainability = () => {
         <section className="relative h-[700px] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <img 
-              src={sustainabilityHero} 
-              alt="Sustainable manufacturing facility" 
+              src={worldOnFire} 
+              alt="Climate crisis and environmental urgency" 
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/50" />
           </div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in text-red-500">
               The World is On FIRE!
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
               1.3 billion tons of food is lost or wasted every year. With this growing amount of food wastage, eventually water shortages, deforestation, pollution, loss of biodiversity, and climate change will lead to an unsustainable system collapse by 2050 if the current system is not transformed.
             </p>
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 max-w-2xl mx-auto mb-8">
-              <p className="text-5xl md:text-6xl font-bold text-primary mb-2">4,320,361,019</p>
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 max-w-2xl mx-auto">
+              <p className="text-5xl md:text-6xl font-bold text-red-500 mb-2">
+                {foodWasteCount.toLocaleString()}
+              </p>
               <p className="text-xl">Tons of Food Wasted in 2021</p>
-            </div>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-6 py-4">
-                <p className="text-3xl font-bold">Platinum</p>
-                <p className="text-sm">EcoVadis Rating</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-6 py-4">
-                <p className="text-3xl font-bold">5,756 MWh</p>
-                <p className="text-sm">Solar Energy</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-6 py-4">
-                <p className="text-3xl font-bold">42.4%</p>
-                <p className="text-sm">Women in Workforce</p>
-              </div>
             </div>
           </div>
         </section>
