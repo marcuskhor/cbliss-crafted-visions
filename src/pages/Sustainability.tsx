@@ -63,7 +63,7 @@ const Sustainability = () => {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="relative h-[600px] flex items-center justify-center overflow-hidden">
+        <section className="relative h-[700px] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <img 
               src={sustainabilityHero} 
@@ -74,11 +74,15 @@ const Sustainability = () => {
           </div>
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
             <h1 className="text-5xl md:text-6xl font-bold mb-6 animate-fade-in">
-              Building a Sustainable Future
+              The World is On FIRE!
             </h1>
-            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-              Committed to environmental excellence, social responsibility, and ethical governance in precision manufacturing
+            <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto leading-relaxed">
+              1.3 billion tons of food is lost or wasted every year. With this growing amount of food wastage, eventually water shortages, deforestation, pollution, loss of biodiversity, and climate change will lead to an unsustainable system collapse by 2050 if the current system is not transformed.
             </p>
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-8 max-w-2xl mx-auto mb-8">
+              <p className="text-5xl md:text-6xl font-bold text-primary mb-2">4,320,361,019</p>
+              <p className="text-xl">Tons of Food Wasted in 2021</p>
+            </div>
             <div className="flex flex-wrap gap-4 justify-center">
               <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-6 py-4">
                 <p className="text-3xl font-bold">Platinum</p>
