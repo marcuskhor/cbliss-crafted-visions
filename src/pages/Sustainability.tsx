@@ -232,16 +232,10 @@ const Sustainability = () => {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
-                href="/contact"
+                href="/about"
                 className="bg-white text-foreground px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors inline-flex items-center gap-2"
               >
-                Partner With Us <ArrowRight size={20} />
-              </a>
-              <a
-                href="/about"
-                className="bg-white/10 backdrop-blur-sm border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/20 transition-colors"
-              >
-                Learn More About Us
+                Learn More About Us <ArrowRight size={20} />
               </a>
             </div>
           </div>
