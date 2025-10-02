@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/logo-white.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,12 +22,8 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo space */}
           <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                {/* Logo placeholder - user will insert their logo here */}
-                <span className="text-white font-bold text-lg">CB</span>
-              </div>
-              <span className="text-xl font-bold text-foreground">Creative Bliss</span>
+            <Link to="/" className="flex items-center">
+              <img src={logo} alt="Creative Bliss Logo" className="h-12" />
             </Link>
           </div>
 

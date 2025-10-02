@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Linkedin, Twitter } from 'lucide-react';
+import logo from '@/assets/logo-white.png';
 
 const Footer = () => {
   const navigation = [
@@ -17,11 +18,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">CB</span>
-              </div>
-              <span className="text-lg font-bold text-foreground">Creative Bliss</span>
+            <div className="mb-4">
+              <img src={logo} alt="Creative Bliss Logo" className="h-10" />
             </div>
             <p className="text-muted-foreground mb-4 max-w-md">
               Your trusted partner in precision metal forming — delivering zero-defect quality, 
