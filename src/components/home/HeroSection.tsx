@@ -17,15 +17,15 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-          Bringing Tomorrow's 
+        <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-8 leading-tight">
+          Bringing Tomorrow's{' '}
           <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"> 
-            Possibilities 
+            Possibilities
           </span>
-          to Life
+          {' '}to Life
         </h1>
         
-        <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+        <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto leading-relaxed">
           Your trusted partner in precision metal forming — delivering zero-defect quality, 
           on-time delivery, and sustainable manufacturing you can rely on.
         </p>

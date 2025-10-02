@@ -52,23 +52,33 @@ const IndustriesSection = () => {
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex(prevIndex => {
-        const newIndex = prevIndex >= industries.length - 1 ? 0 : prevIndex + 1;
+    const scrollInterval = setInterval(() => {
+      if (scrollRef.current) {
+        const container = scrollRef.current;
+        const cardWidth = 288 + 24; // card width + gap
+        const currentScroll = container.scrollLeft;
+        const maxScroll = (industries.length - 1) * cardWidth;
         
-        if (scrollRef.current) {
-          const cardWidth = 288 + 24; // card width + gap
-          scrollRef.current.scrollTo({
-            left: newIndex === 0 ? 0 : newIndex * cardWidth,
+        if (currentScroll >= maxScroll) {
+          // Reset to start
+          container.scrollTo({
+            left: 0,
             behavior: 'smooth'
           });
+          setCurrentIndex(0);
+        } else {
+          // Scroll to next card
+          const newIndex = Math.round(currentScroll / cardWidth) + 1;
+          container.scrollTo({
+            left: newIndex * cardWidth,
+            behavior: 'smooth'
+          });
+          setCurrentIndex(newIndex);
         }
-        
-        return newIndex;
-      });
+      }
     }, 3500);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(scrollInterval);
   }, [industries.length]);
 
   return (
@@ -84,7 +94,7 @@ const IndustriesSection = () => {
 
         {/* Auto-scrolling container */}
         <div className="overflow-hidden pb-6">
-          <div ref={scrollRef} className="flex space-x-6 w-max" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div ref={scrollRef} className="flex space-x-6 overflow-x-scroll" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
             {industries.map((industry, index) => {
               return (
                 <div
