@@ -233,7 +233,7 @@ const Sustainability = () => {
             <div className="flex flex-wrap gap-4 justify-center">
               <a
                 href="/about"
-                className="bg-white text-foreground px-8 py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors inline-flex items-center gap-2"
+                className="bg-primary text-primary-foreground px-8 py-4 rounded-lg font-semibold hover:bg-primary/90 transition-colors inline-flex items-center gap-2 shadow-lg"
               >
                 Learn More About Us <ArrowRight size={20} />
               </a>
