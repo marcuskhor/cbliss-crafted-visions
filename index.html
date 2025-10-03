@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Creative Bliss - Precision Metal Forming & Manufacturing</title>
+    <script>
+      // Handle redirect from 404.html
+      (function(){
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect != location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
     <meta name="description" content="Creative Bliss (CBliss) - Your trusted partner in precision metal forming with over 30 years of experience. Zero-defect quality, on-time delivery, and sustainable manufacturing." />
     <meta name="author" content="Creative Bliss" />
 
