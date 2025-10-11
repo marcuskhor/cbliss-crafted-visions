@@ -1,6 +1,7 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { Check } from 'lucide-react';
+import metalStamping from '@/assets/metal-stamping.jpg';
 
 const About = () => {
   const philosophyPrinciples = [
@@ -23,11 +24,37 @@ const About = () => {
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-primary/10 to-accent/10">
+        <section className="relative h-[500px] lg:h-[600px] overflow-hidden">
+          <div className="grid lg:grid-cols-2 h-full">
+            {/* Text Side */}
+            <div className="flex items-center justify-center bg-background px-8 lg:px-16 py-12">
+              <div className="max-w-xl">
+                <p className="text-sm font-semibold text-primary mb-4 tracking-wider uppercase">
+                  Someone You Can
+                </p>
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-tight">
+                  Trust,
+                  <br />
+                  <span className="text-primary">Delivers</span>
+                </h1>
+              </div>
+            </div>
+
+            {/* Image Side */}
+            <div className="relative h-full">
+              <img 
+                src={metalStamping} 
+                alt="Precision Manufacturing" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/40 to-transparent lg:from-transparent" />
+            </div>
+          </div>
+        </section>
+
+        {/* Introduction Section */}
+        <section className="py-20 bg-muted/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-center">
-              About Creative Bliss
-            </h1>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto text-center leading-relaxed">
               At Creative Bliss, we believe that precision engineering is more than just accuracy — it's a commitment to excellence, reliability, and innovation. For years, we have been the trusted partner of leading industries across automotive, medical, electronics, and advanced manufacturing, delivering high-quality parts, assemblies, and solutions that meet the most demanding standards.
             </p>
