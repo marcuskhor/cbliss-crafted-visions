@@ -136,30 +136,30 @@ const Sustainability = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="space-y-12">
               {initiatives.map((initiative, index) => (
                 <div
                   key={index}
-                  className="group bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
+                  className={`flex flex-col md:flex-row gap-0 bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${
+                    index % 2 === 1 ? 'md:flex-row-reverse' : ''
+                  }`}
                 >
-                  <div className="relative h-64 overflow-hidden">
+                  <div className="md:w-1/2 relative h-[400px] overflow-hidden">
                     <img 
                       src={initiative.image} 
                       alt={initiative.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <div className="flex items-center gap-3 mb-2">
-                        <initiative.icon size={28} />
-                        <h3 className="text-2xl font-bold">{initiative.title}</h3>
-                      </div>
-                    </div>
                   </div>
-                  <div className="p-6">
-                    <p className="text-muted-foreground mb-4">{initiative.description}</p>
-                    <button className="text-primary hover:gap-2 flex items-center gap-1 font-medium transition-all group-hover:gap-2">
-                      Learn More <ArrowRight size={16} />
+                  <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                    <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase tracking-tight">
+                      {initiative.title}
+                    </h3>
+                    <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                      {initiative.description}
+                    </p>
+                    <button className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors w-fit inline-flex items-center gap-2">
+                      Learn More
                     </button>
                   </div>
                 </div>
