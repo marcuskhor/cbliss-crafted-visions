@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import electronicTechImg from '@/assets/electronic-technology.jpg';
@@ -11,55 +12,50 @@ import consumerElectronicsImg from '@/assets/consumer-electronics.jpg';
 const Industries = () => {
   const industries = [
     {
-      title: 'Electronic Technology',
-      description: 'Precision components for cutting-edge electronic systems and devices, supporting the rapid evolution of technology.',
-      image: electronicTechImg,
-      applications: ['Circuit components', 'Connectors', 'Housing solutions', 'Thermal management']
-    },
-    {
-      title: 'Semiconductor Industry',
-      description: 'Ultra-precise manufacturing solutions for semiconductor equipment and components requiring the highest standards.',
-      image: semiconductorImg,
-      applications: ['Wafer handling', 'Process equipment', 'Clean room components', 'Precision fixtures']
-    },
-    {
-      title: 'Data Centre Industry',
-      description: 'Robust and reliable components for data center infrastructure, ensuring optimal performance and uptime.',
+      title: 'Data Centre / Cloud Storage',
+      description: 'In the ever-evolving landscape of data storage, reliability and efficiency are paramount. Creative Bliss provides cutting-edge solutions designed to meet the demands of this dynamic industry.',
       image: dataCentreImg,
-      applications: ['Rack systems', 'Cable management', 'Cooling solutions', 'Server components']
+    },
+    {
+      title: 'Electronic Technology',
+      description: 'Precision components for cutting-edge electronic systems and devices, supporting the rapid evolution of technology with unmatched quality and performance.',
+      image: electronicTechImg,
+    },
+    {
+      title: 'Semiconductor',
+      description: 'Ultra-precise manufacturing solutions for semiconductor equipment and components requiring the highest standards of quality and precision.',
+      image: semiconductorImg,
     },
     {
       title: 'Automotive',
-      description: 'High-volume precision parts for automotive applications, meeting stringent safety and quality standards.',
+      description: 'High-volume precision parts for automotive applications, meeting stringent safety and quality standards for the future of mobility.',
       image: automotiveImg,
-      applications: ['Engine components', 'Electrical systems', 'Safety features', 'EV solutions']
     },
     {
       title: 'Medical Devices',
-      description: 'Biocompatible precision components for medical devices and surgical instruments with zero-defect quality.',
+      description: 'Biocompatible precision components for medical devices and surgical instruments with zero-defect quality and regulatory compliance.',
       image: medicalDevicesImg,
-      applications: ['Surgical instruments', 'Implant components', 'Diagnostic equipment', 'Lab devices']
     },
     {
-      title: 'Industrial Electronics & Mechatronics',
-      description: 'Complex assemblies and components for industrial automation and mechatronic systems.',
+      title: 'Industrial Electronics',
+      description: 'Complex assemblies and components for industrial automation and mechatronic systems driving Industry 4.0.',
       image: industrialElectronicsImg,
-      applications: ['Automation systems', 'Robotics', 'Control systems', 'Sensor components']
     },
     {
       title: 'Consumer Electronics',
-      description: 'High-quality components for consumer electronics, balancing aesthetics with functionality.',
+      description: 'High-quality components for consumer electronics, balancing aesthetics with functionality for everyday devices.',
       image: consumerElectronicsImg,
-      applications: ['Mobile devices', 'Wearables', 'Home electronics', 'Audio systems']
     }
   ];
+
+  const [selectedIndustry, setSelectedIndustry] = useState(0);
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
       <main>
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-primary/10 to-accent/10">
+        <section className="py-16 bg-gradient-to-br from-primary/10 to-accent/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Industries Served
@@ -70,51 +66,69 @@ const Industries = () => {
           </div>
         </section>
 
-        {/* Value Proposition */}
-        <section className="py-16 bg-card border-y border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-lg text-muted-foreground text-center max-w-4xl mx-auto">
-              We deliver lasting value by helping our customers reduce their Total Cost of Ownership by leveraging our unique multi-disciplinary skill set from both electro-mechanical and mechanical disciplines.
-            </p>
-          </div>
-        </section>
-
-        {/* Industries Grid */}
-        <section className="py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {industries.map((industry, index) => (
-                <div
-                  key={index}
-                  className="group bg-card border border-border rounded-lg overflow-hidden hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="relative h-48 overflow-hidden">
-                    <img
-                      src={industry.image}
-                      alt={industry.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <h3 className="absolute bottom-4 left-4 right-4 text-xl font-bold text-white">
+        {/* Interactive Industries Section */}
+        <section className="min-h-[80vh] bg-gradient-to-br from-gray-950 to-gray-900 relative">
+          <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
+            <div className="grid lg:grid-cols-[300px_1fr] gap-8 lg:gap-0 min-h-[80vh]">
+              {/* Navigation Sidebar */}
+              <div className="flex flex-col justify-center py-8 lg:py-16 space-y-2">
+                {industries.map((industry, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedIndustry(index)}
+                    className={`flex items-center gap-4 text-left py-4 px-6 transition-all duration-300 rounded-lg group ${
+                      selectedIndustry === index
+                        ? 'bg-white/10 text-white'
+                        : 'text-gray-400 hover:text-white hover:bg-white/5'
+                    }`}
+                  >
+                    <div className={`flex items-center justify-center w-12 h-12 rounded-full border-2 transition-all ${
+                      selectedIndustry === index
+                        ? 'border-primary text-primary scale-110'
+                        : 'border-gray-600 group-hover:border-gray-400'
+                    }`}>
+                      <span className="text-sm font-bold">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                    </div>
+                    <span className="font-semibold text-sm uppercase tracking-wider">
                       {industry.title}
-                    </h3>
-                  </div>
-                  <div className="p-6">
-                    <p className="text-muted-foreground mb-4">{industry.description}</p>
-                    <div className="space-y-2">
-                      <p className="text-sm font-semibold text-foreground">Applications:</p>
-                      <ul className="space-y-1">
-                        {industry.applications.map((app, appIndex) => (
-                          <li key={appIndex} className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
-                            {app}
-                          </li>
-                        ))}
-                      </ul>
+                    </span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Content Display */}
+              <div className="relative lg:pl-12">
+                <div className="lg:sticky lg:top-24 flex flex-col justify-center min-h-[60vh] lg:min-h-[80vh]">
+                  {/* Image */}
+                  <div className="relative h-[400px] lg:h-[500px] rounded-lg overflow-hidden mb-8 group">
+                    <img
+                      src={industries[selectedIndustry].image}
+                      alt={industries[selectedIndustry].title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                    
+                    {/* Number Badge */}
+                    <div className="absolute top-6 right-6 flex items-center justify-center w-16 h-16 rounded-full border-2 border-white/50 bg-black/30 backdrop-blur-sm">
+                      <span className="text-2xl font-bold text-white">
+                        {String(selectedIndustry + 1).padStart(2, '0')}
+                      </span>
                     </div>
                   </div>
+
+                  {/* Text Content */}
+                  <div className="space-y-4">
+                    <h2 className="text-3xl lg:text-4xl font-bold text-white">
+                      {industries[selectedIndustry].title}
+                    </h2>
+                    <p className="text-gray-300 text-lg leading-relaxed max-w-3xl">
+                      {industries[selectedIndustry].description}
+                    </p>
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </section>
