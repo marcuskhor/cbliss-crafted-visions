@@ -126,50 +126,72 @@ const Sustainability = () => {
           </div>
         </section>
 
-        {/* Key Initiatives */}
-        <section className="py-20">
+        {/* Impact Metrics */}
+        <section className="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-foreground mb-4">Key Initiatives in Action</h2>
-              <p className="text-xl text-muted-foreground">
-                Tangible actions driving environmental and social impact
+              <h2 className="text-4xl font-bold text-foreground mb-4">
+                Measurable Impact
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Tracking our progress towards a more sustainable future through concrete metrics
               </p>
             </div>
 
-            <div className="space-y-12">
-              {initiatives.map((initiative, index) => (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+              {achievements.map((achievement, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col md:flex-row gap-0 bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ${
-                    index % 2 === 1 ? 'md:flex-row-reverse' : ''
-                  }`}
+                  className="bg-card border border-border rounded-xl p-8 text-center hover:shadow-lg transition-shadow"
                 >
-                  <div className="md:w-1/2 relative h-[400px] overflow-hidden">
-                    <img 
-                      src={initiative.image} 
-                      alt={initiative.title}
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                    />
+                  <div className="mb-4">
+                    <Award className="text-primary mx-auto animate-scale-in" size={40} />
                   </div>
-                  <div className="md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                    <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-6 uppercase tracking-tight">
-                      {initiative.title}
-                    </h3>
-                    <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-                      {initiative.description}
-                    </p>
-                    <button className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors w-fit inline-flex items-center gap-2">
-                      Learn More
-                    </button>
-                  </div>
+                  <p className="text-4xl font-bold text-primary mb-3">{achievement.value}</p>
+                  <p className="text-sm text-muted-foreground font-medium">{achievement.label}</p>
                 </div>
               ))}
+            </div>
+
+            <div className="bg-card border border-border rounded-xl p-8 max-w-3xl mx-auto text-center">
+              <p className="text-lg text-muted-foreground italic mb-4">
+                "Our sustainability journey is about creating lasting value for all stakeholders while protecting our planet for future generations."
+              </p>
+              <p className="text-sm font-semibold text-foreground">— Leadership Team, Creative Bliss</p>
+              <div className="mt-8">
+                <button className="bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-lg font-medium hover:opacity-90 transition-opacity inline-flex items-center gap-2">
+                  Download Sustainability Report <ArrowRight size={20} />
+                </button>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Impact Metrics */}
-        <section className="py-20 bg-gradient-to-br from-primary/5 to-accent/5">
+        {/* Leadership Message */}
+        <section className="relative py-32 overflow-hidden">
+          <div className="absolute inset-0">
+            <img 
+              src={environmentalStewardship} 
+              alt="Sustainability vision" 
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-teal-600/90 to-teal-500/80" />
+          </div>
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+            <p className="text-2xl md:text-3xl mb-8 leading-relaxed font-light">
+              In 2022, we revitalized our sustainability approach to focus on six strategic pillars that prioritize driving innovation, quality excellence, environmental stewardship, people excellence, sustainable procurement, and good governance.
+            </p>
+            <p className="text-lg font-semibold mb-8 tracking-wide">
+              — Leadership Team, Creative Bliss
+            </p>
+            <button className="bg-primary text-primary-foreground px-10 py-4 rounded-lg font-semibold hover:bg-primary/90 transition-colors shadow-xl">
+              Download Report
+            </button>
+          </div>
+        </section>
+
+        {/* Key Initiatives */}
+        <section className="py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-foreground mb-4">
