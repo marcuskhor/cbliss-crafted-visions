@@ -32,20 +32,19 @@ const About = () => {
             className="absolute inset-0 w-full h-full object-cover"
           />
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-black/60" />
           
           {/* Content */}
-          <div className="relative h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center">
-            <div className="max-w-5xl mx-auto">
-              <p className="text-sm font-semibold text-white mb-4 tracking-wider uppercase">
-                Someone You Can
-              </p>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-12">
-                Trust,
+          <div className="relative h-full flex flex-col justify-center px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
+            <div className="max-w-3xl">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-8">
+                Precision you can{' '}
+                <span className="text-primary">trust</span>,
                 <br />
-                <span className="text-primary">Delivers</span>
+                Creativity that{' '}
+                <span className="text-primary">delivers</span>
               </h1>
-              <p className="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-white/90 leading-relaxed">
                 At Creative Bliss, we believe that precision engineering is more than just accuracy — it's a commitment to excellence, reliability, and innovation. For years, we have been the trusted partner of leading industries across automotive, medical, electronics, and advanced manufacturing, delivering high-quality parts, assemblies, and solutions that meet the most demanding standards.
               </p>
             </div>
